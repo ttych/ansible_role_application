@@ -1,2 +1,32 @@
 ---
-# tasks file for ansible_role_application
+
+- block:
+    - include_tasks: context.yml
+
+    - include_tasks: accounts.yml
+      vars: {
+        accounts_groups: "{{ application_groups }}",
+        accounts_users: "{{ application_users }}"
+      }
+
+    - include_tasks: zfs_datasets.yml
+      vars:
+        zfs_datasets: "{{ application_directories }}"
+
+    - include_tasks: workspace.yml
+      vars:
+        workspace_directories: "{{ application_directories }}"
+
+    - include_tasks: install_packages.yml
+      vars: {
+        packages: "{{ application_packages }}",
+        services: []
+      }
+
+    # - include: setup_application.yml
+
+  when: want_application
+
+- name: "set has_application to {{ want_application }}"
+  set_fact:
+    has_application: "{{ want_application }}"

@@ -1,0 +1,3 @@
+---
+
+application_dir: "{{ service_dir }}/application"
