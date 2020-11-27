@@ -9,10 +9,6 @@
         accounts_users: "{{ application_users }}"
       }
 
-    - include_tasks: zfs_datasets.yml
-      vars:
-        zfs_datasets: "{{ application_directories }}"
-
     - include_tasks: workspace.yml
       vars:
         workspace_directories: "{{ application_directories }}"
@@ -23,7 +19,7 @@
         services: []
       }
 
-    # - include: setup_application.yml
+    - include_tasks: setup_application.yml
 
   when: want_application
 

@@ -21,7 +21,7 @@ application_users:
     password: '*'
 
 application_distributions_dir: "{{ application_dir }}/distributions"
-    
+
 application_directories:
   - { path: "{{ application_distributions_dir }}", owner: "{{ application_user }}", group: "{{ application_group }}", mode: "0755" }
 
