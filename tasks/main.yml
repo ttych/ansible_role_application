@@ -3,6 +3,8 @@
 - block:
     - include_tasks: context.yml
 
+    - include_tasks: context_service.yml
+
     - include_tasks: accounts.yml
       vars: {
         accounts_groups: "{{ application_groups }}",
